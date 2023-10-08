@@ -22,6 +22,8 @@ jobs:
       run: |
         docker run -dit -p 3000:3000 -e INTERNAL_RUNTIME_KEY=secret-key --rm --volume $PWD/code.tar.gz:/tmp/code.tar.gz:ro openruntimes/java:v2-18.0 sh /usr/local/src/start.sh
         echo "hello 2"
+    - name: Check docker process
+      run: docker ps
     - name: Test function
       run: curl --location --request POST 'http://localhost:3000/'
       
