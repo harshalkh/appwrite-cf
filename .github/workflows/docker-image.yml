@@ -19,6 +19,8 @@ jobs:
     - name: test
       run: echo "hello"
     - name: Run docker image
-      run: docker run -d -p 3000:3000 -e INTERNAL_RUNTIME_KEY=secret-key --rm --volume $PWD/code.tar.gz:/tmp/code.tar.gz:ro openruntimes/java:v2-18.0 sh /usr/local/src/start.sh
+      run: |
+        docker run -d -p 3000:3000 -e INTERNAL_RUNTIME_KEY=secret-key --rm --volume $PWD/code.tar.gz:/tmp/code.tar.gz:ro openruntimes/java:v2-18.0 sh /usr/local/src/start.sh
+        curl 'http://localhost:3000/'
     - name: Test function
       run: curl 'http://localhost:3000/'
