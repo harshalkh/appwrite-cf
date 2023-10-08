@@ -25,5 +25,4 @@ jobs:
     - name: Check docker process
       run: docker ps
     - name: Test function
-      run: curl -L --location --request POST 'http://localhost:3000/'
-      
+      run: curl --location --request POST 'http://localhost:3000/' --header 'X-Internal-Challenge:secret-key' --header 'Content-Type:application/json' --data-raw '{"payload":"{\"fileUrl\":\"https://static.deepgram.com/examples/interview_speech-analytics.wav\"}", "variables":{}}'
