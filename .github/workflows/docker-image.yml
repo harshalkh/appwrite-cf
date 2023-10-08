@@ -25,5 +25,5 @@ jobs:
     - name: Check docker process
       run: docker ps
     - name: Test function
-      run: curl --location --request POST 'http://localhost:3000/'
+      run: curl -L --location --request POST 'http://localhost:3000/'
       
