@@ -1,0 +1,18 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker run -e INTERNAL_RUNTIME_ENTRYPOINT=Index.java --rm --volume $PWD:/usr/code openruntimes/java:v2-18.0 sh /usr/local/src/build.sh
