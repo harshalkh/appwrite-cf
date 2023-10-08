@@ -15,4 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker run -e INTERNAL_RUNTIME_ENTRYPOINT=Index.java --rm --volume $PWD:/usr/code openruntimes/java:v2-18.0 sh /usr/local/src/build.sh
+      run: |
+        docker run -e INTERNAL_RUNTIME_ENTRYPOINT=Index.java --rm --volume $PWD:/usr/code openruntimes/java:v2-18.0 sh /usr/local/src/build.sh
+        echo "hello"
+        docker run -p 3000:3000 -e INTERNAL_RUNTIME_KEY=secret-key --rm --interactive --volume $PWD/code.tar.gz:/tmp/code.tar.gz:ro openruntimes/java:v2-18.0 sh /usr/local/src/start.sh
